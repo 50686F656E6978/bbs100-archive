@@ -418,7 +418,7 @@ int idx;
 	p = bsearch(addr, pagetable, pagetable_size, sizeof(SlubPageTable), cmp_address);
 	if (p != NULL) {
 		/* first do bookkeeping */
-		idx = ((int)p->memcache - (int)memcaches) / sizeof(MemCache);
+		idx = p->memcache - memcaches;
 		if (idx < 0 || idx >= NUM_MEMCACHES) {
 			log_err("memcache_free(): invalid memcache index: %d", idx);
 			abort();
